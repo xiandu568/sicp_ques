@@ -1,0 +1,10 @@
+#lang sicp
+(define (for_each proc items)
+  (if (not (null? items))
+      (begin
+        (proc (car items))
+        (for_each proc (cdr items)))))
+(for_each (lambda (x) (display x)(newline) )
+          (list 3 4 6))
+
+      

@@ -1,0 +1,29 @@
+#lang sicp
+(define (make_point x y)
+  (cons x y))
+(define (x_point x)
+  (car x))
+(define (y_point x)
+  (cdr x))
+;线段表示
+(define (make_segment x y)
+  (cons x y))
+(define (start_segment x)
+  (car x))
+(define (end_segment x)
+  (cdr x))
+;求线段中点
+(define (midpoint_segment x)
+  (make_point (/ (+ (x_point (start_segment x))
+                    (x_point (end_segment x)))
+                 2)
+              (/ (+ (y_point (start_segment x))
+                    (y_point (end_segment x)))
+                 2)))
+(define start (make_point 1 2))
+(define end (make_point 3 4))
+(define first_segment (make_segment start end))
+(midpoint_segment first_segment)
+(list 1 2 3 4)
+
+                 

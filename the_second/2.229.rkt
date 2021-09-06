@@ -1,0 +1,48 @@
+#lang sicp
+(define (make_mobile left right)
+  (list left right))
+(define (make_branch length structure)
+  (list length structure))
+(define (left_branch mobile)
+  (car mobile))
+(define (right_branch mobile)
+  (cadr mobile))
+(define (branch_length branch)
+  (car branch))
+(define (branch_structure branch)
+  (cadr branch))
+
+(define (total_weight mobile)
+  (+ (branch_weight (left_branch mobile))
+     (branch_weight (right_branch mobile))))
+(define (branch_weight branch)
+  (if (pair? (branch_structure branch))
+      (total_weight (branch_structure branch))
+      (branch_structure branch)))
+(define mobile (make_mobile (make_branch 10 20)       ; 活动体的总重量为 20 + 25 = 45
+                                  (make_branch 10 25)))
+(define (branch_torque branch);计算力矩
+  (* (branch_length branch)
+     (branch_weight branch)))
+
+(define (mobile_balance? mobile)
+  (let ((left (left_branch mobile))
+        (right (right_branch mobile)))
+    (and
+     (same_torque? left right)
+     (branch_balance? left)
+     (branch_balance? right))))
+(define (same_torque? left right)  e
+  (= (branch_torque left)
+     (branch_torque right)))
+(define (branch_balance? branch)
+  (if (pair? (branch_structure branch))
+      (mobile_balance? (branch_structure branch))
+      #t))
+(mobile_balance? mobile)
+        
+              
+
+
+                    
+                    
